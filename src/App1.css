@@ -1,0 +1,175 @@
+/* 전체 배경 설정 */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* 보라빛 그라데이션 */
+  font-family: 'Pretendard', -apple-system, sans-serif;
+}
+
+/* 메인 컨테이너 */
+.todo-container {
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* 제목 스타일 */
+h1 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* 입력창 그룹 */
+.todo-input-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.todo-input-group input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.todo-input-group input:focus {
+  border-color: #764ba2;
+  box-shadow: 0 0 8px rgba(118, 75, 162, 0.2);
+}
+
+/* 추가 버튼 */
+.todo-input-group button {
+  padding: 12px 20px;
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.todo-input-group button:hover {
+  background: #667eea;
+  transform: translateY(-2px);
+}
+
+.todo-input-group button:active {
+  transform: translateY(0);
+}
+
+/* 리스트 스타일 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 개별 아이템 애니메이션 */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.4s ease-out; /* 등장 애니메이션 */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.todo-item span {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* 삭제 버튼 */
+.todo-item button {
+  background: #ffeded;
+  color: #ff5e5e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.todo-item button:hover {
+  background: #ff5e5e;
+  color: white;
+}
+
+.todo-list {
+  list-style: none; /* 기본 점 삭제 */
+  padding: 0;
+  margin: 0;
+  counter-reset: todo-counter; /* 'todo-counter'라는 이름의 카운터 생성 및 0으로 초기화 */
+}
+
+/* 2. 자식 아이템(li) 스타일 수정 및 카운터 증가 */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.4s ease-out;
+  
+  /* 번호가 들어갈 공간 확보를 위해 왼쪽 패딩 증가 */
+  padding-left: 50px; 
+  position: relative; /* 번호를 절대 위치로 배치하기 위해 설정 */
+  
+  counter-increment: todo-counter; /* 이 아이템이 나타날 때마다 카운터 1 증가 */
+}
+
+/* 3. 자식 아이템(li) 앞에 번호 생성 (가상 요소 ::before 활용) */
+.todo-item::before {
+  /* 핵심: 카운터 값을 콘텐츠로 표시 */
+  content: counter(todo-counter); 
+  
+  /* 디자인 및 배치 */
+  position: absolute;
+  left: 15px; /* 왼쪽에서 15px 떨어진 곳에 배치 */
+  top: 50%;
+  transform: translateY(-50%); /* 세로 중앙 정렬 */
+  
+  /* 화려한 번호 스타일링 */
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #95b7da; 
+  background: #e7e5ec5f; 
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 기존 fadeIn 애니메이션은 그대로 유지 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
