@@ -6,7 +6,29 @@ const useTodo = () => {
 
   const addTodo = (text) => {
     if (!text.trim()) return;
-    setTodos((prev) => [...prev, { id: Date.now(), text }]);
+    setTodos((prev) => [
+      ...prev, 
+      { id: Date.now(), text, done: false }
+    ]);
+
+    setText("");
+
+    // 투두 추가 후 포커스
+    inputRef.current.focus();
+  };
+
+  const toggleTodo = (id) => {
+    setTodos(prev =>
+      prev.map(todo =>
+        todo.id === id
+        ? { ...todo, done: !todo.done }
+        : todo
+      )
+    );
+  };
+
+  const removeTodo = (id) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
   };
 
   const deleteTodo = (id) => {
@@ -17,11 +39,11 @@ const useTodo = () => {
 };
 
 // 관심사(UI) 단위로 컴포넌트 분리 - 반복되는 태그들의 묶음
-const TodoInput = ({ inputRef, value, onChange, onAdd }) => (
+const TodoInput = ({ inputRef, text, onChange, onAdd }) => (
   <div className="todo-input-group">
     <input
       ref={inputRef}
-      value={value}
+      value={text}
       onChange={onChange}
       placeholder="할 일을 입력하세요"
       onKeyDown={(e) => e.key === "Enter" && onAdd()}
