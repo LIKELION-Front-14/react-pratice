@@ -1,0 +1,23 @@
+/* Hello.module.css */
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* State에 따른 조건부 클래스 */
+.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.inactive {
+  background-color: #ddd;
+  color: #666;
+}
