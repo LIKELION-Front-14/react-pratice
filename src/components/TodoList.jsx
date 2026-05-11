@@ -1,7 +1,31 @@
 import { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 import TodoItem from "./TodoItem"; 
+import TodoInput from "./TodoInput";
 
-function TodoList( ) {
+const Container = styled.div`
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+`;
+
+const ListWrapper = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export default function TodoList( ) {
   const [ text, setText ] = useState("");
   const [ todos, setTodos ] = useState([ ]); 
 
@@ -48,17 +72,17 @@ function TodoList( ) {
   }, [ todos ] ); 
 
   return (
-    <div>
-      <input
-        ref={ inputRef }
-        value={ text }
-        onChange={ e => setText(e.target.value) }
-        onKeyDown={ e => e.key === "Enter" && addTodo( ) }
-        placeholder="할 일을 입력하세요"
+    <Container>
+      <Title>My Todo List</Title>
+      
+      <TodoInput 
+        inputRef={ inputRef }
+        text={ text }
+        setText={ setText }
+        addTodo={ addTodo }
       />
-      <button onClick={ addTodo }>추가</button>
 
-      <ul>
+      <ListWrapper>
         { todos.map(todo => (
           <TodoItem
             key={ todo.id }
@@ -67,9 +91,7 @@ function TodoList( ) {
             onRemove={ removeTodo }
           />
         )) }
-      </ul>
-    </div>
+      </ListWrapper>
+    </Container>
   );
 }
-
-export default TodoList;
