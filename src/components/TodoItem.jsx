@@ -1,7 +1,35 @@
+/** @jsxImportSource @emotion/react */ //무조건 1번 라인
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
 
-//  Styled Components 
+const useTodo = () => {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (text) => {
+    if (!text.trim()) return;
+    setTodos((prev) => [
+      ...prev,
+      { id: Date.now(), text, done: false },
+    ]);
+  };
+
+  const toggleTodo = (id) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      )
+    );
+  };
+
+  const deleteTodo = (id) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  return { todos, addTodo, toggleTodo, deleteTodo };
+};
+
+// Emotion Styled Components 
 
 const Container = styled.div`
   max-width: 480px;
@@ -39,10 +67,9 @@ const InputGroup = styled.div`
   }
 `;
 
-/* Props를 읽어와서 동적으로 스타일 적용 */
 const AddButton = styled.button`
   padding: 10px 18px;
-  background: ${(props) => props.bgColor || "#6a11cb"};
+  background: #6a11cb;
   color: white;
   border: none;
   border-radius: 8px;
@@ -52,12 +79,12 @@ const AddButton = styled.button`
   transition: all 0.2s;
 
   &:hover {
-    background: ${(props) => props.hoverColor || "#2575fc"};
+    background: #2575fc;
     transform: scale(1.05);
   }
 `;
 
-const TodoList = styled.ul`
+const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
@@ -66,7 +93,7 @@ const TodoList = styled.ul`
   gap: 8px;
 `;
 
-const TodoItemLi = styled.li`
+const ItemWrapper = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,15 +107,7 @@ const TodoItemLi = styled.li`
   }
 `;
 
-const ItemText = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-  color: ${(props) => (props.done ? "#aaa" : "#222")};
-  text-decoration: ${(props) => (props.done ? "line-through" : "none")};
-  transition: all 0.2s;
-`;
-
-const DeleteButton = styled.button`
+const DeleteBtn = styled.button`
   padding: 5px 12px;
   background: transparent;
   color: #e24b4a;
@@ -104,35 +123,16 @@ const DeleteButton = styled.button`
   }
 `;
 
-//  Custom Hook 
+// done 값에 따라 취소선 + 글자 투명도를 css 함수로 처리
+const itemTextStyle = (done) => css`
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: ${done ? "rgba(0, 0, 0, 0.35)" : "rgba(0, 0, 0, 0.85)"};
+  text-decoration: ${done ? "line-through" : "none"};
+`;
 
-const useTodo = () => {
-  const [todos, setTodos] = useState([]);
-
-  const addTodo = (text) => {
-    if (!text.trim()) return;
-    setTodos((prev) => [
-      ...prev,
-      { id: Date.now(), text, done: false },
-    ]);
-  };
-
-  const toggleTodo = (id) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
-      )
-    );
-  };
-
-  const deleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
-  };
-
-  return { todos, addTodo, toggleTodo, deleteTodo };
-};
-
-// Components 
+//  Components 
 
 const TodoInput = ({ inputRef, text, onChange, onAdd }) => (
   <InputGroup>
@@ -148,17 +148,20 @@ const TodoInput = ({ inputRef, text, onChange, onAdd }) => (
 );
 
 const TodoItem = ({ todo, onToggle, onDelete }) => (
-  <TodoItemLi>
-    <ItemText done={todo.done} onClick={() => onToggle(todo.id)}>
+  <ItemWrapper>
+    <span
+      css={itemTextStyle(todo.done)}
+      onClick={() => onToggle(todo.id)}
+    >
       {todo.text}
-    </ItemText>
-    <DeleteButton onClick={() => onDelete(todo.id)}>삭제</DeleteButton>
-  </TodoItemLi>
+    </span>
+    <DeleteBtn onClick={() => onDelete(todo.id)}>삭제</DeleteBtn>
+  </ItemWrapper>
 );
 
-//  Main 
+// Main 
 
-const App = () => {
+const TodoList = () => {
   const { todos, addTodo, toggleTodo, deleteTodo } = useTodo();
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
@@ -170,6 +173,7 @@ const App = () => {
     console.log("현재 투두 개수:", todos.length);
   }, [todos]);
 
+  // ✅ BUG FIX: setInputValue + focus를 handleAdd에서 처리
   const handleAdd = () => {
     addTodo(inputValue);
     setInputValue("");
@@ -185,7 +189,7 @@ const App = () => {
         onChange={(e) => setInputValue(e.target.value)}
         onAdd={handleAdd}
       />
-      <TodoList>
+      <List>
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}
@@ -194,9 +198,9 @@ const App = () => {
             onDelete={deleteTodo}
           />
         ))}
-      </TodoList>
+      </List>
     </Container>
   );
 };
 
-export default App;
+export default TodoList;
