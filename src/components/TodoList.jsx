@@ -1,6 +1,29 @@
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 import TodoItem from "./TodoItem";
 import TodoAddBar from "./TodoAddBar";
+
+const TodoCard = styled.div`
+  width: min(100%, 720px);
+  padding: 28px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 24px 60px rgba(148, 163, 184, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(18px);
+`;
+
+const TodoAddBarWrapper = styled.div`
+  margin-bottom: 22px;
+`;
+
+const TodoListWrapper = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
 function TodoList() {
   const [text, setText] = useState("");
@@ -33,17 +56,17 @@ function TodoList() {
   }, [todos]);
 
   return (
-    <div className="todo-card">
-      <div className="todo-addbar">
+    <TodoCard>
+      <TodoAddBarWrapper>
         <TodoAddBar
           value={text}
           inputRef={inputRef}
           onChange={(e) => setText(e.target.value)}
           onAdd={addTodo}
         />
-      </div>
+      </TodoAddBarWrapper>
 
-      <ul className="todo-list">
+      <TodoListWrapper>
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}
@@ -52,8 +75,8 @@ function TodoList() {
             onRemove={removeTodo}
           />
         ))}
-      </ul>
-    </div>
+      </TodoListWrapper>
+    </TodoCard>
   );
 }
 
