@@ -77,7 +77,7 @@ const menuItems = [
     name: "두쫀크",
     englishName: "Dubai쫀k",
     price: "4,500",
-    desc: "두크크",
+    desc: "영크크 늙크크 두크크",
     tag: "",
     color: "#c4832a",
   },
