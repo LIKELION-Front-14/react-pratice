@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display...');
+
+:root {
+  --brown-900: #1a0a00;
+  --brown-800: #2c1206;
+  --brown-700: #3b1f0e;
+  --brown-600: #5a3220;
+  --brown-500: #7b4f2e;
+  --brown-400: #a0714e;
+  --brown-300: #c4956a;
+  --cream-100: #fdf6ec;
+  --cream-200: #f5e6cc;
+  --cream-300: #e8d0a8;
+  --gold: #c8952a;
+  --gold-light: #e8b84b;
+  --white: #ffffff;
+  --text-dark: #1a0a00;
+  --text-medium: #5a3220;
+  --text-light: #a0714e;
+
+  --font-display: 'Playfair Display', 'Noto Serif KR', Georgia, serif;
+  --font-body: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+
+  --radius: 12px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 20px rgba(58, 26, 10, 0.12);
+  --shadow-lg: 0 12px 40px rgba(58, 26, 10, 0.2);
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream-100);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
