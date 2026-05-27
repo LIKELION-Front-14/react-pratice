@@ -1,0 +1,280 @@
+.logo2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
+    justify-content: center;   
+    text-align: center;   
+    font-weight: 700;
+    font-size: 40px;
+    margin-top: 90px;
+}
+.menu-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-title {
+    color: #d17a22;
+    margin-bottom: 30px;
+}
+
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    width: 100%;
+    padding: 10px 0;
+}
+
+.menu-card {
+    background-color: #ffffff; 
+    border: 1px solid #f7e6a7;  
+    border-radius: 12px;      
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(235, 179, 107, 0.1); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}
+
+
+.menu-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(235, 179, 107, 0.2); 
+}
+
+
+.menu-name {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.menu-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    height: 40px; 
+}
+
+.menu-price {
+    display: inline-block;
+    color: #ff9800; 
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
+
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh; 
+  background-color: #fbf9f1; 
+  padding: 20px;
+}
+
+
+.login-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #222222;
+  margin-bottom: 30px;
+  letter-spacing: -0.5px;
+}
+
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.login-input:focus {
+  border-color: #ff9800; 
+}
+
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+
+.button-group button {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.button-group button:hover {
+  opacity: 0.9;
+}
+
+
+.btn-login {
+  background-color: #ff9800; 
+  color: #ffffff;
+}
+
+
+.btn-back {
+  background-color: #e0e0d8;
+  color: #555555;
+}
+
+
+.login-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #888888;
+}
+
+.footer-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.footer-link:hover {
+  color: #222222;
+}
+
+
+
+.story-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+
+.story-header {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.story-main-title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #d35400; 
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.story-sub-title {
+  font-size: 15px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+
+.story-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+
+.story-card {
+  background-color: #ffffff;
+  padding: 30px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(243, 156, 18, 0.15); 
+  box-shadow: 0 8px 20px rgba(211, 84, 0, 0.03); 
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.story-card:hover {
+  transform: translateY(-5px); 
+}
+
+
+.story-icon {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.story-card h3 {
+  font-size: 18px;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+  font-weight: bold;
+}
+
+.story-card p {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin: 0;
+  word-break: keep-all; 
+}
+
+
+.story-notice-box {
+  background-color: rgba(243, 156, 18, 0.05);
+  border-left: 4px solid #f39c12; 
+  padding: 20px 25px;
+  border-radius: 4px 12px 12px 4px;
+}
+
+.story-notice-box h4 {
+  font-size: 16px;
+  color: #e67e22;
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}
+
+.story-notice-box p {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
