@@ -1,0 +1,28 @@
+.container {
+  width: 90%;
+  height: 450px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.light {
+  background-color: white;
+  color: mediumorchid;
+  border: 1px solid silver;
+}
+
+.btn-group {
+  margin-top: 10px;
+}
+
+.status {
+  margin-left: 20px;
+  margin-top: 20px;
+}
