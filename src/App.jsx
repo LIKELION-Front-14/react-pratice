@@ -24,7 +24,6 @@ function App() {
         다크모드 변경
       </button>
 
-
       <div>
         <button onClick={() => changeLanguage("ko")}>한국어</button>
         <button onClick={() => changeLanguage("en")}>English</button>
