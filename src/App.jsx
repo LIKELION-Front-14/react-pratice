@@ -1,33 +1,60 @@
-import { Routes, Route } from "react-router-dom";
-import Layout from "./layouts/Layout";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Menu from "./pages/Menu";
-import Story from "./pages/Story";
-import NotFound from "./pages/NotFound";
+import { useState } from "react";
+import { create } from "zustand";
 
-function App() {
+
+export const useUserStore = create((set) => ({
+  isDarkMode: false,
+  language: "ko", 
+
+  setDarkMode: () =>
+    set((state) => ({ isDarkMode: !state.isDarkMode })),
+
+  setLanguage: (lang) => set({ language: lang }),
+}));
+
+// 2. 이름을 화면에 보여주는 컴포넌트
+function Profile() {
+  // 스토어에서 user 데이터만 가져옴
+  const language = useUserStore((state) => state.language);
+
   return (
-    <Routes>
-      {/* Layout을 루트로 설정 */}
-      <Route element={<Layout />}>
-        {/* 홈페이지: / */}
-        <Route path="/" element={<Home />} />
-
-        {/* 소개 페이지: /menu */}
-        <Route path="/menu" element={<Menu />} />
-
-        {/* 스토리 페이지: /story */}
-        <Route path="/story" element={<Story />} />
-
-        {/* 로그인 페이지: /login */}
-        <Route path="/login" element={<Login />} />
-
-        {/* 404 페이지: 위 모든 경로에 매칭되지 않을 때 */}
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <div>
+      <h1>{language === "ko" ? "안녕하세요" : "Hello"}</h1>
+    </div>
   );
 }
 
-export default App;
+// 3. 이름을 변경하는 입력창과 버튼 컴포넌트
+function EditProfile() {
+
+  const setLanguage = useUserStore((state) => state.setLanguage);
+  const setDarkMode = useUserStore((state) => state.setDarkMode);
+
+  return (
+    <div>
+      <button onClick={() => setDarkMode()}>다크모드 변경</button>
+      <div style={{ marginTop: "20px" }}>
+        <button onClick={() => setLanguage("ko")}>Korean</button>
+        <button onClick={() => setLanguage("en")}>English</button>
+      </div>
+    </div>
+  );
+}
+
+// 4. 메인 화면
+export default function App() {
+
+  const isDarkMode = useUserStore((state) => state.isDarkMode);
+  return (
+    <div style={{ 
+      padding: "20px",
+      backgroundColor: isDarkMode ? "#333" : "#fff",
+      color: isDarkMode ? "#fff" : "#333",
+      minHeight: "100vh"
+    }}>
+      <Profile />
+      <EditProfile />
+    </div>
+  );
+}
+
