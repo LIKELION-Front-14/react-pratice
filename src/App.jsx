@@ -5,20 +5,22 @@ import Login from "./pages/Login"
 import Menu from "./pages/Menu"
 import Story from "./pages/Story"
 import NotFound from "./pages/NotFound"
+import HomePage from "./pages/HomePage"
 
 
 function App() {
 
   return (
-    <Routes>
-      <Route path = "/" element={<Layout/>}>
-        <Route index element = {<Home/>}/>
-        <Route path = "login" element ={<Login/>}/>
-        <Route path = "menu" element = {<Menu/>}/>
-        <Route path = "story" element = {<Story/>}/>
-        <Route path = "*" element = {<NotFound/>}/>
-      </Route>
-    </Routes>
+    // <Routes>
+    //   <Route path = "/" element={<Layout/>}>
+    //     <Route index element = {<Home/>}/>
+    //     <Route path = "login" element ={<Login/>}/>
+    //     <Route path = "menu" element = {<Menu/>}/>
+    //     <Route path = "story" element = {<Story/>}/>
+    //     <Route path = "*" element = {<NotFound/>}/>
+    //   </Route>
+    // </Routes>
+    <HomePage />
   );
 }
 
